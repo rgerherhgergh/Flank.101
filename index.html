@@ -1,0 +1,498 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Flank.101</title>
+    <meta name="description" content="Official site of Flank.101 - StrayedVR, Rust, Christan, and Developer, Backend Engineer">
+    <meta name="keywords" content="Flank.101, English Developer, Rust, StrayedVR, Christan, Music, Mississippi">
+    <meta name="author" content="Flank.101">
+
+    <meta property="og:title" content="Flank.101">
+    <meta property="og:description" content="Developer • Backend Engineer • Based in Mississippi">
+    <meta property="og:image" content="images/8cc290e151dfc592d6edde936b699472.webp">
+    <meta property="og:url" content="https://Flank.101.xyz/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Flank.101">
+    <meta name="twitter:description" content="Developer • Backend Engineer • Based in Mississippi">
+    <meta name="twitter:image" content="https://cdn.discordapp.com/avatars/1353778830082314270/8cc290e151dfc592d6edde936b699472.webp">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        html, body {
+            height: 100%;
+        }
+        body {
+            background: url('https://media.discordapp.net/attachments/1426843013958864898/1427451794375577652/jesus-cross-sunset-orange-sky-silhouette-religion-faith-4480x2520-5483.jpg?ex=68eee994&is=68ed9814&hm=faa09f39ebd4d85a9f5a8b08377c346094eee61112ab3f14c634704a52a88006&=&format=webp&width=1522&height=856') center/cover no-repeat;
+            overflow: hidden;
+        }
+        .landing {
+            position: fixed;
+            inset: 0;
+            backdrop-filter: blur(10px);
+            background-color: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity .8s ease;
+            z-index: 10;
+        }
+        .enter-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            user-select: none;
+            text-shadow: 0 0 15px rgba(119,44,180,0.8);
+            animation: floaty 2s ease-in-out infinite;
+        }
+        @keyframes floaty {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .ui {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1000px;
+            opacity: 0;
+            transform: scale(0.7);
+            transition: opacity .5s ease, transform .5s cubic-bezier(0.2,1,0.3,1);
+            flex-direction: column;
+        }
+        .ui.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .card {
+            width: 620px;
+            padding: 22px;
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(119,44,180,0.18), rgba(74,18,105,0.18));
+            backdrop-filter: blur(20px);
+            color: #fff;
+            box-shadow:
+                0 0 30px 10px rgba(119,44,180,0.15),
+                0 10px 40px rgba(0,0,0,0.6);
+            transform-style: preserve-3d;
+            transition: transform .12s ease, box-shadow .2s ease;
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+        }
+        .avatar-container {
+            position: relative;
+            width: 88px;
+            height: 88px;
+            margin-right: 18px;
+        }
+        .avatar {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid rgba(255,255,255,0.14);
+            background: #222;
+        }
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .avatar-decoration {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 108px;
+            height: 108px;
+            pointer-events: none;
+            mix-blend-mode: screen;
+        }
+        .meta {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 0;
+        }
+        .username {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .about {
+            margin-top: 6px;
+            font-size: .95rem;
+            color: rgba(255,255,255,0.88);
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .typing::after {
+            content: "";
+            display: inline-block;
+            width: 2px;
+            height: 1.05em;
+            background: linear-gradient(#fff,#fff);
+            margin-left: 8px;
+            vertical-align: middle;
+            animation: blink .9s steps(1) infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0 }
+            100% { opacity: 1 }
+        }
+        .status-card {
+            margin-top: 20px;
+            background: rgba(255,255,255,0.04);
+            padding: 14px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .status-info {
+            display: flex;
+            align-items: center;
+        }
+        .status-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid rgba(255,255,255,0.14);
+            background: #222;
+        }
+        .status-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .status-avatar-decoration {
+            width: 88px;
+            height: 88px;
+            object-fit: cover;
+        }
+        .status-text {
+            font-size: .9rem;
+            color: rgba(255,255,255,0.95);
+        }
+        .status-icon {
+            font-size: 1.6rem;
+            background: rgba(0,0,0,0.25);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .footer {
+            margin-top: 15px;
+            font-size: .9rem;
+            opacity: .85;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .footer i {
+            margin-right: 6px;
+        }
+        .socials {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 22px;
+            z-index: 5;
+        }
+        .socials a {
+            font-size: 1.5rem;
+            color: #fff;
+            text-shadow: 0 0 12px rgba(119,44,180,0.9);
+            transition: transform 0.2s ease, text-shadow 0.2s ease;
+            animation: pulseGlow 2s infinite;
+        }
+        .socials a:hover {
+            transform: scale(1.2);
+            text-shadow: 0 0 20px rgba(119,44,180,1);
+        }
+        @keyframes pulseGlow {
+            0%, 100% { text-shadow: 0 0 12px rgba(119,44,180,0.9); }
+            50% { text-shadow: 0 0 18px rgba(119,44,180,1); }
+        }
+        .volume-control {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #4b006e, #7a1fbf);
+            box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+        .volume-control i {
+            color: white;
+            font-size: 1.2rem;
+        }
+        .volume-control input[type="range"] {
+            -webkit-appearance: none;
+            width: 140px;
+            height: 4px;
+            background: white;
+            border-radius: 2px;
+            outline: none;
+        }
+        .volume-control input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+        }
+        .volume-control input[type="range"]::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+        }
+        .rain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.raindrop {
+    position: absolute;
+    width: 2px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    animation: fall linear infinite;
+}
+
+/* Randomize the position and speed of the raindrops */
+@keyframes fall {
+    0% {
+        transform: translateY(-100vh);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .raindrop {
+        width: 1px;
+        height: 15px;
+    }
+}
+        @media (max-width:720px) {
+            .card {
+                width: 92%;
+                padding: 18px;
+            }
+            .avatar-container {
+                width: 72px;
+                height: 72px;
+            }
+            .avatar {
+                width: 72px;
+                height: 72px;
+            }
+            .avatar-decoration {
+                width: 92px;
+                height: 92px;
+                top: -8px;
+                left: -8px;
+            }
+        }
+    </style>
+</head>
+<body>
+        <div class="rain"></div>
+    <div class="landing" id="landing">
+        <div class="enter-text" id="enterText">Enter</div>
+    </div>
+    <div class="ui" id="ui">
+        <div class="card" id="card">
+            <div class="profile-header">
+                <div class="avatar-container">
+                    <div class="avatar">
+                        <img src="images/54592609f316300e30ecc49afdd7ead7~tplv-tiktokx-cropcenter_1080_1080.jpeg" alt="avatar">
+                    </div>
+                    <img class="avatar-decoration" src="images/snowglobe_blue.gif" alt="decoration">
+                </div>
+                <div class="meta">
+                    <div id="username" class="username"></div>
+                    <div id="about" class="about"></div>
+                </div>
+            </div>
+            <div class="status-card">
+                <div class="status-info">
+                    <div class="status-avatar">
+                        <img src="images/54592609f316300e30ecc49afdd7ead7~tplv-tiktokx-cropcenter_1080_1080.jpeg" alt="avatar">
+                        <img class="status-avatar-decoration" src="images/snowglobe_blue.gif" alt="decoration">
+                    </div>
+                    <div class="status-text">
+                        <strong>Flank.101</strong><br>
+                        Status<br>
+                        <br>
+                        Lisening to music!<br>
+                        Idk what to put here lowk
+                    </div>
+                </div>
+                <div class="status-icon"><i class="fa-brands fa-discord"></i></div>
+            </div>
+            <div class="footer"><i class="fa-solid fa-location-dot"></i> Mississippi</div>
+        </div>
+    </div>
+    <div class="socials">
+        <a href="Got banned😭" target="_blank"><i class="fab fa-snapchat"></i></a>
+        <a href="https://www.tiktok.com/@flank.101" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://discord.gg/nZbtXDVZVa" target="_blank"><i class="fab fa-discord"></i></a>
+    </div>
+    <div class="volume-control">
+        <i class="fa-solid fa-volume-high"></i>
+        <input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="0.3">
+    </div>
+    <audio id="audioPlayer" loop="">
+        <source src="media/Hozier - Take Me To Church.mp3" type="audio/mpeg">
+    </audio>
+    <script>
+        const landing = document.getElementById('landing');
+        const enterText = document.getElementById('enterText');
+        const ui = document.getElementById('ui');
+        const card = document.getElementById('card');
+        const usernameEl = document.getElementById('username');
+        const aboutEl = document.getElementById('about');
+        const audio = document.getElementById('audioPlayer');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const usernameText = "Flank.101";
+        const aboutPhrases = [
+            "14 y/o Reverse Engineer",
+            "Male",
+            "Christian",
+            "Reverse Engineer",
+            "(9th Grade) Student",
+            "Backend Engineer",
+        ];
+        function sleep(ms) {
+            return new Promise(r => setTimeout(r, ms));
+        }
+        async function typeOnce(el, text, speed=90) {
+            el.classList.add('typing');
+            for(let i=1; i<=text.length; i++) {
+                el.textContent = text.slice(0, i);
+                await sleep(speed);
+            }
+            el.classList.remove('typing');
+        }
+        async function loopTypewriter(el, phrases, typeSpeed=90, deleteSpeed=45, pauseAfter=1400) {
+            let i = 0;
+            while(true) {
+                const phrase = phrases[i % phrases.length];
+                el.classList.add('typing');
+                for(let c=1; c<=phrase.length; c++) {
+                    el.textContent = phrase.slice(0, c);
+                    await sleep(typeSpeed);
+                }
+                await sleep(pauseAfter);
+                for(let c=phrase.length; c>=0; c--) {
+                    el.textContent = phrase.slice(0, c);
+                    await sleep(deleteSpeed);
+                }
+                el.textContent = "";
+                el.classList.remove('typing');
+                i++;
+                await sleep(180);
+            }
+        }
+        async function typeTitle(text, speed=150) {
+            let current = "";
+            for(let i=0; i<text.length; i++) {
+                current += text[i];
+                document.title = current;
+                await sleep(speed);
+            }
+        }
+        window.addEventListener('DOMContentLoaded', () => {
+            typeTitle("Flank.101");
+        });
+        enterText.addEventListener('click', () => {
+            landing.style.opacity = '0';
+            setTimeout(() => {
+                landing.style.display = 'none';
+                ui.classList.add('show');
+                audio.volume = 0.3;
+                audio.play().catch(() => {});
+                setTimeout(async () => {
+                    await typeOnce(usernameEl, usernameText);
+                    loopTypewriter(aboutEl, aboutPhrases);
+                }, 160);
+            }, 800);
+        });
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const cx = rect.width / 2;
+          const cy = rect.height / 2;
+          const rotX = ((cy - y) / cy) * 9;
+          const rotY = ((x - cx) / cx) * 9;
+          card.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(0)`;
+          card.style.boxShadow = `
+            0 0 30px 10px rgba(119,44,180,0.15),
+            0 18px 50px rgba(0,0,0,0.65)
+          `;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+            card.style.boxShadow = `
+                0 0 30px 10px rgba(119,44,180,0.15),
+                0 10px 40px rgba(0,0,0,0.6)
+            `;
+        });
+        volumeSlider.addEventListener('input', () => {
+            audio.volume = volumeSlider.value;
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+    const rainContainer = document.querySelector('.rain');
+
+    function createRaindrop() {
+        const raindrop = document.createElement('div');
+        raindrop.classList.add('raindrop');
+        raindrop.style.left = `${Math.random() * 100}vw`; // Random horizontal position
+        raindrop.style.animationDuration = `${Math.random() * 2 + 2}s`; // Random animation speed
+        raindrop.style.animationDelay = `${Math.random() * 2}s`; // Random delay
+
+        rainContainer.appendChild(raindrop);
+    }
+
+    // Create 100 raindrops (you can increase or decrease this number)
+    for (let i = 0; i < 100; i++) {
+        createRaindrop();
+    }
+});
+
+    </script>
+
+
+</body></html>
