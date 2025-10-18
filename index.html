@@ -13,13 +13,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+<div class="floating-squares">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
     <div class="custom-cursor" id="cursor"></div>
     <div class="cursor-trail" id="cursor-trail"></div>
 
 <audio id="background-audio" loop>
-    <source src="song.mp3" type="audio/mpeg">
+    <source src="SpotiDownloader.com - live forever - Lil Peep.mp3" type="audio/mpeg">
     Your browser does not support audio.
 </audio>
+
 
 <div class="intro-overlay" id="introOverlay">
   <div class="intro-content">
@@ -35,6 +44,7 @@
             <div class="nav-links">
                 <a href="#about" class="nav-link">About</a>
                 <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
         </div>
@@ -141,6 +151,7 @@
                     </div>
                 </div>
                 
+                
                 <div class="skill-category">
                     <h3 class="category-title">Backend</h3>
                     <div class="skill-items">
@@ -179,6 +190,38 @@
             </div>
         </div>
     </section>
+
+<section class="projects" id="projects">
+    <div class="projects-container">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="stars.png" alt="Project Image">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-name">LunaMP</h3>
+                    <p class="project-description">
+                        Play classic Fortnite the way it was meant to be, original map, weapons, and nostalgia. Built by fans, for fans. With Project Luna!
+                    </p>
+
+                    <!-- Video Preview -->
+                    <div class="project-video">
+                        <video autoplay loop muted playsinline>
+                            <source src="Freaks.mp4" type="video/mp4">
+                            Your browser does not support video.
+                        </video>
+                    </div>
+
+                    <!-- Discord Button -->
+                    <a href="https://discord.gg/d7WuM4k3HN" target="_blank" class="discord-button">Join Discord</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 
     <section class="contact" id="contact">
         <div class="contact-container">
