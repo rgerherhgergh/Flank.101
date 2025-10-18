@@ -531,7 +531,7 @@ const audio = document.getElementById('background-audio');
 
 introOverlay.addEventListener('click', () => {
   introOverlay.classList.add('hidden');
-  audio.volume = 0.5;  // Facultatif : ajuste le volume
+  audio.volume = 0.6;  // Facultatif : ajuste le volume
   audio.play();
 });
 
@@ -756,4 +756,5 @@ const closeBtn = document.querySelector('.skill-modal-close');
         if (e.key === 'Escape' && modal && modal.style.display === 'block') {
             closeModal();
         }
+        
     });
