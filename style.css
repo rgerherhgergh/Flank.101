@@ -117,6 +117,137 @@ body {
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
     will-change: transform;
 }
+/* ===== Floating Squares Background ===== */
+.floating-squares {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.projects {
+    padding: 6rem 0;
+    background: rgba(15, 15, 15, 0.6);
+}
+
+.projects-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: rgba(20, 20, 20, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.project-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    background: rgba(30, 30, 30, 0.6);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 35px rgba(255, 255, 255, 0.1);
+}
+
+.project-image img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 0;
+}
+
+.project-info {
+    flex: 1;
+}
+
+.project-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.project-description {
+    color: #a0a0a0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+
+/* Discord Button */
+.discord-button {
+    display: inline-block;
+    padding: 12px 28px;
+    margin-top: 15px;
+    background-color: #5865F2;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(88, 101, 242, 0.6);
+}
+
+.discord-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(88, 101, 242, 0.9);
+}
+
+/* Video Preview */
+.project-video {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 15px 0;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+
+.project-video video {
+    width: 100%;
+    display: block;
+}
+
+
+.floating-squares div {
+  position: absolute;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 2rem;
+  opacity: 0.12;
+  backdrop-filter: blur(100px);
+  animation: float 25s infinite linear;
+  bottom: -250px;
+}
+
+/* Customize each square */
+.floating-squares div:nth-child(1) { left: 5%; animation-duration: 25s; background: linear-gradient(135deg, #2a2a2a, #3d3d3d); }
+.floating-squares div:nth-child(2) { left: 25%; animation-duration: 28s; animation-delay: -10s; background: linear-gradient(135deg, #303030, #3a3a3a); }
+.floating-squares div:nth-child(3) { left: 45%; animation-duration: 27s; animation-delay: -5s; background: linear-gradient(135deg, #353535, #2a2a2a); }
+.floating-squares div:nth-child(4) { left: 65%; animation-duration: 29s; animation-delay: -15s; background: linear-gradient(135deg, #3a3a3a, #303030); }
+.floating-squares div:nth-child(5) { left: 85%; animation-duration: 24s; animation-delay: -8s; background: linear-gradient(135deg, #2a2a2a, #3d3d3d); }
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.12; }
+  100% { transform: translateY(-2000px) rotate(360deg); opacity: 0.12; }
+}
+
 
 #discord-avatar {
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
